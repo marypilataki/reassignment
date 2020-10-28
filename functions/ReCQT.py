@@ -176,7 +176,7 @@ def reassigned_cqt(y, fs, n_bins, n_octaves, bins_per_octave, hop_length, window
         # Compute the cqt filter response and append to the stack
         cqt_resp.append(cqt_response(my_y, n_fft, my_hop, fft_basis, mode=pad_mode, fs=fs))
 
-    C = librosa.core.constantq.__trim_stack(cqt_resp, n_bins)
+    C = librosa.core.constantq.__trim_stack(cqt_resp, n_bins, dtype = librosa.util.dtype_r2c(y.dtype))
 
     if scale:
         lengths = librosa.filters.constant_q_lengths(fs, fmin,
